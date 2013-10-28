@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Pacer</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="affections">
+        <item >Time</item>
+        <item >Distance</item>
+    </string-array>
+    <string-array name="units">
+        <item >Kilometers</item>
+        <item >Miles</item>
+    </string-array>
+
+</resources>
