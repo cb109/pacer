@@ -26,9 +26,11 @@ public class MainActivity extends Activity implements
 
 	// These are used as default if there are none yet stored in SharedPrefs
 	private double distance = 10.00; // internal unit: kilometers
-	private double time = 60.00; // internal unit: minutes
+	private double time = 60.00; // internal unit: minutes (but display in
+									// hrs:mins:secs)
 	private double speed = 10.00; // internal unit: km/h
-	private double pace = 6.00; // internal unit: min/km
+	private double pace = 6.00; // internal unit: min/km (but displayed in
+								// mins:secs)
 
 	private DecimalFormat df = new DecimalFormat("##.##"); // for distance,
 															// speed, pace
@@ -86,7 +88,7 @@ public class MainActivity extends Activity implements
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if (hasFocus) {
-					show_dialog_float(editTextDistance, distance);
+					show_dialog_float(editTextDistance, distance, 99);
 				}
 			}
 		});
@@ -94,7 +96,7 @@ public class MainActivity extends Activity implements
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if (hasFocus) {
-					show_dialog_float(editTextSpeed, speed);
+					show_dialog_float(editTextSpeed, speed, 99);
 				}
 			}
 		});
@@ -102,7 +104,7 @@ public class MainActivity extends Activity implements
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if (hasFocus) {
-					show_dialog_float(editTextPace, pace);
+					show_dialog_float(editTextPace, pace, 59);
 				}
 			}
 		});
@@ -146,7 +148,6 @@ public class MainActivity extends Activity implements
 		storeToSharedPreferences();
 	}
 
-	// TODO change to resource strings here as well in the conditional!
 	private void storeToSharedPreferences() {
 		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
 		editor.putFloat("distance", (float) distance);
@@ -170,7 +171,6 @@ public class MainActivity extends Activity implements
 		editor.commit();
 	}
 
-	// TODO change to resource strings here as well in the conditional!
 	private void loadFromSharedPreferences() {
 		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 		distance = (double) prefs.getFloat("distance", (float) distance);
@@ -182,7 +182,7 @@ public class MainActivity extends Activity implements
 		spinnerAffects.setSelection(prefs.getInt("spinnerAffectsIndex", 0));
 
 		CheckBox checkBoxLock = (CheckBox) findViewById(R.id.checkBoxLock);
-		checkBoxLock.setChecked(prefs.getBoolean("checkBoxLockChecked", true));
+		checkBoxLock.setChecked(prefs.getBoolean("checkBoxLockChecked", false));
 
 		EditText editTextSpeed = (EditText) findViewById(R.id.editTextSpeed);
 		editTextSpeed
@@ -194,7 +194,7 @@ public class MainActivity extends Activity implements
 
 	public void show_dialog_hms(final EditText sender, double initialValue) {
 		final Dialog d = new Dialog(MainActivity.this);
-		d.setTitle("Set Time");
+		d.setTitle(getResources().getString(R.string.ui_title_time));
 		d.setContentView(R.layout.numberpicker_dialog_hms);
 
 		final NumberPicker numberPickerHours = (NumberPicker) d
@@ -214,8 +214,8 @@ public class MainActivity extends Activity implements
 		numberPickerSeconds.setValue(initials[2]);
 		numberPickerSeconds.setOnValueChangedListener(this);
 
-		Button buttonOk = (Button) d.findViewById(R.id.buttonOk);
-		Button buttonCancel = (Button) d.findViewById(R.id.buttonCancel);
+		final Button buttonOk = (Button) d.findViewById(R.id.buttonOk);
+		final Button buttonCancel = (Button) d.findViewById(R.id.buttonCancel);
 		buttonOk.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -244,25 +244,48 @@ public class MainActivity extends Activity implements
 	 * @param postMaxValue
 	 *            : e.g. 99 for speed and distance or 59 for pace
 	 */
-	public void show_dialog_float(final EditText sender, double initialValue) {
+	public void show_dialog_float(final EditText sender, double initialValue,
+			int postMaxValue) {
 		final Dialog d = new Dialog(MainActivity.this);
-		d.setTitle("Set Value");
+		d.setTitle(getResources().getString(R.string.ui_title_default));
 		d.setContentView(R.layout.numberpicker_dialog_float);
+
+		if (sender != ((EditText) findViewById(R.id.editTextPace))) {
+			((TextView) d.findViewById(R.id.TextViewMinutes))
+					.setVisibility(View.GONE);
+			((TextView) d.findViewById(R.id.TextViewSeconds))
+					.setVisibility(View.GONE);
+			if (sender == ((EditText) findViewById(R.id.editTextSpeed))) {
+				d.setTitle(getResources().getString(R.string.ui_title_speed));
+			}
+			if (sender == ((EditText) findViewById(R.id.editTextDistance))) {
+				d.setTitle(getResources().getString(R.string.ui_title_distance));
+			}
+		} else {
+			d.setTitle(getResources().getString(R.string.ui_title_pace));
+		}
 
 		final NumberPicker numberPickerPre = (NumberPicker) d
 				.findViewById(R.id.numberPickerPre);
 		final NumberPicker numberPickerPost = (NumberPicker) d
 				.findViewById(R.id.numberPickerPost);
-		int[] initials = double_to_integers(initialValue);
+
+		int[] initials;
+		if (sender != ((EditText) findViewById(R.id.editTextPace))) {
+			initials = double_to_integers(initialValue);
+		} else {
+			initials = minutes_to_ms(initialValue);
+		}
+
 		numberPickerPre.setMaxValue(999);
 		numberPickerPre.setValue(initials[0]);
 		numberPickerPre.setOnValueChangedListener(this);
-		numberPickerPost.setMaxValue(99);
+		numberPickerPost.setMaxValue(postMaxValue);
 		numberPickerPost.setValue(initials[1]);
 		numberPickerPost.setOnValueChangedListener(this);
 
-		Button buttonOk = (Button) d.findViewById(R.id.buttonOk);
-		Button buttonCancel = (Button) d.findViewById(R.id.buttonCancel);
+		final Button buttonOk = (Button) d.findViewById(R.id.buttonOk);
+		final Button buttonCancel = (Button) d.findViewById(R.id.buttonCancel);
 		buttonOk.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -315,12 +338,36 @@ public class MainActivity extends Activity implements
 		return result;
 	}
 
+	private int[] minutes_to_ms(double minutes) {
+		int mins = (int) minutes;
+		double remainingFraction = minutes - mins;
+		int secs = (int) Math.round(60 * remainingFraction);
+		System.out.println("FRAC " + remainingFraction);
+		int[] result = new int[] { mins, secs };
+		return result;
+	}
+
+	private double ms_to_minutes(int[] ms) {
+		int mins = ms[0];
+		int secs = ms[1];
+		double minutes = mins + secs / 60.0;
+		return minutes;
+	}
+
+	private String ms_to_string(int[] ms) {
+		int mins = ms[0];
+		int secs = ms[1];
+		String result = String.format("%02d", mins) + ":"
+				+ String.format("%02d", secs);
+		return result;
+	}
+
 	private int[] minutes_to_hms(double minutes) {
 		int hrs = (int) minutes / 60;
 		double remainingMinutes = minutes % 60;
 		int mins = (int) remainingMinutes;
 		double remainingFraction = remainingMinutes - mins;
-		int secs = (int) (60 * remainingFraction);
+		int secs = (int) Math.round(60 * remainingFraction);
 		int[] result = new int[] { hrs, mins, secs };
 		return result;
 	}
@@ -343,7 +390,6 @@ public class MainActivity extends Activity implements
 		return result;
 	}
 
-	// TODO HIER STRING RESSOURCEN AUSWECHSELN/INTEGRIEREN IN DIE ABFRAGE
 	/**
 	 * Updates the field that corresponds to the given edittext by converting
 	 * the numberpicker values. Updates all other related fields as well.
@@ -379,15 +425,15 @@ public class MainActivity extends Activity implements
 		if (sender == (EditText) findViewById(R.id.editTextSpeed)) {
 			speed = integers_to_double(new int[] { np1_value, np2_value });
 			pace = calcPaceUsingSpeed();
-			if (spinnerAffects.getSelectedItem().toString().equals("Distance")) {
+			if (spinnerAffects.getSelectedItem().toString().equals(getResources().getString(R.string.ui_txt_distance))) {
 				distance = calcDistance();
 			} else {
 				time = calcTime();
 			}
 		}
 		if (sender == (EditText) findViewById(R.id.editTextPace)) {
-			pace = integers_to_double(new int[] { np1_value, np2_value });
-			if (spinnerAffects.getSelectedItem().toString().equals("Distance")) {
+			pace = ms_to_minutes(new int[] { np1_value, np2_value });
+			if (spinnerAffects.getSelectedItem().toString().equals(getResources().getString(R.string.ui_txt_distance))) {
 				distance = calcDistance();
 			} else {
 				time = calcTime();
@@ -409,7 +455,7 @@ public class MainActivity extends Activity implements
 		final EditText editTextTime = (EditText) findViewById(R.id.editTextTime);
 		editTextDistance.setText(df.format((distance)));
 		editTextSpeed.setText(df.format(speed));
-		editTextPace.setText(df.format(pace));
+		editTextPace.setText(ms_to_string(minutes_to_ms(pace)));
 		editTextTime.setText(hms_to_string(minutes_to_hms(time)));
 
 		// Update predictions

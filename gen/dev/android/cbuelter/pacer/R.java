@@ -10,7 +10,6 @@ package dev.android.cbuelter.pacer;
 public final class R {
     public static final class array {
         public static final int affections=0x7f060000;
-        public static final int units=0x7f060001;
     }
     public static final class attr {
     }
@@ -28,52 +27,48 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int RadioGroupUnits=0x7f090030;
-        public static final int TextViewMinutes=0x7f090035;
-        public static final int TextViewSeconds=0x7f090036;
-        public static final int action_settings=0x7f090039;
-        public static final int buttonCancel=0x7f090034;
-        public static final int buttonInvisible=0x7f090038;
-        public static final int buttonOk=0x7f090033;
-        public static final int buttonReset=0x7f09001c;
+        public static final int TextViewMinutes=0x7f09002d;
+        public static final int TextViewSeconds=0x7f09002e;
+        public static final int action_settings=0x7f090035;
+        public static final int buttonCancel=0x7f090032;
+        public static final int buttonInvisible=0x7f090034;
+        public static final int buttonOk=0x7f090031;
+        public static final int buttonReset=0x7f09001d;
         public static final int checkBoxLock=0x7f090008;
-        public static final int editText1=0x7f09002c;
-        public static final int editText2=0x7f09002d;
-        public static final int editText3=0x7f09002e;
         public static final int editTextDistance=0x7f09000e;
         public static final int editTextPace=0x7f090016;
         public static final int editTextSpeed=0x7f09001a;
         public static final int editTextTime=0x7f090012;
         public static final int linearLayoutFocusAttractor=0x7f090000;
-        public static final int numberPickerHours=0x7f090037;
-        public static final int numberPickerPost=0x7f090032;
-        public static final int numberPickerPre=0x7f090031;
-        public static final int radioGroupAffects=0x7f09002f;
+        public static final int numberPickerHours=0x7f090033;
+        public static final int numberPickerPost=0x7f090030;
+        public static final int numberPickerPre=0x7f09002f;
         public static final int spinnerAffects=0x7f090006;
         public static final int tableLayout1=0x7f090009;
         public static final int tableLayout2=0x7f090001;
-        public static final int tableLayout3=0x7f09001d;
+        public static final int tableLayout3=0x7f09001e;
         public static final int tableRow1=0x7f09000c;
         public static final int tableRow10=0x7f09000a;
-        public static final int tableRow16=0x7f090026;
-        public static final int tableRow17=0x7f090029;
-        public static final int tableRow18=0x7f090023;
-        public static final int tableRow19=0x7f090020;
+        public static final int tableRow16=0x7f090027;
+        public static final int tableRow17=0x7f09002a;
+        public static final int tableRow18=0x7f090024;
+        public static final int tableRow19=0x7f090021;
         public static final int tableRow2=0x7f090010;
-        public static final int tableRow20=0x7f09001e;
-        public static final int tableRow3=0x7f090018;
+        public static final int tableRow20=0x7f09001f;
+        public static final int tableRow32=0x7f09001c;
+        public static final int tableRow33=0x7f090018;
         public static final int tableRow4=0x7f090014;
         public static final int tableRow5=0x7f090004;
         public static final int tableRow7=0x7f090007;
         public static final int tableRow9=0x7f090002;
         public static final int textViewAffects=0x7f090005;
         public static final int textViewHeader1=0x7f09000b;
-        public static final int textViewHeader10k=0x7f090024;
+        public static final int textViewHeader10k=0x7f090025;
         public static final int textViewHeader2=0x7f090003;
-        public static final int textViewHeader3=0x7f09001f;
-        public static final int textViewHeader5k=0x7f090021;
-        public static final int textViewHeaderHm=0x7f090027;
-        public static final int textViewHeaderM=0x7f09002a;
+        public static final int textViewHeader3=0x7f090020;
+        public static final int textViewHeader5k=0x7f090022;
+        public static final int textViewHeaderHm=0x7f090028;
+        public static final int textViewHeaderM=0x7f09002b;
         public static final int textViewNameDistance=0x7f09000d;
         public static final int textViewNamePace=0x7f090015;
         public static final int textViewNameSpeed=0x7f090019;
@@ -82,16 +77,15 @@ public final class R {
         public static final int textViewUnitPace=0x7f090017;
         public static final int textViewUnitSpeed=0x7f09001b;
         public static final int textViewUnitTime=0x7f090013;
-        public static final int textViewValue10k=0x7f090025;
-        public static final int textViewValue5k=0x7f090022;
-        public static final int textViewValueHm=0x7f090028;
-        public static final int textViewValueM=0x7f09002b;
+        public static final int textViewValue10k=0x7f090026;
+        public static final int textViewValue5k=0x7f090023;
+        public static final int textViewValueHm=0x7f090029;
+        public static final int textViewValueM=0x7f09002c;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int activity_main2=0x7f030001;
-        public static final int numberpicker_dialog_float=0x7f030002;
-        public static final int numberpicker_dialog_hms=0x7f030003;
+        public static final int numberpicker_dialog_float=0x7f030001;
+        public static final int numberpicker_dialog_hms=0x7f030002;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -99,6 +93,34 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int ui_btn_cancel=0x7f050011;
+        public static final int ui_btn_ok=0x7f050010;
+        public static final int ui_btn_reset=0x7f05000f;
+        public static final int ui_expl_affects=0x7f050005;
+        public static final int ui_expl_lock=0x7f050006;
+        public static final int ui_header_predictions=0x7f050004;
+        public static final int ui_header_settings=0x7f050002;
+        public static final int ui_header_values=0x7f050003;
+        public static final int ui_pred_10k=0x7f050013;
+        public static final int ui_pred_5k=0x7f050012;
+        public static final int ui_pred_hm=0x7f050014;
+        public static final int ui_pred_m=0x7f050015;
+        public static final int ui_title_default=0x7f050019;
+        public static final int ui_title_distance=0x7f05001a;
+        public static final int ui_title_pace=0x7f05001c;
+        public static final int ui_title_speed=0x7f05001d;
+        public static final int ui_title_time=0x7f05001b;
+        public static final int ui_txt_distance=0x7f050007;
+        public static final int ui_txt_hours=0x7f050016;
+        public static final int ui_txt_minutes=0x7f050017;
+        public static final int ui_txt_pace=0x7f05000a;
+        public static final int ui_txt_seconds=0x7f050018;
+        public static final int ui_txt_speed=0x7f050009;
+        public static final int ui_txt_time=0x7f050008;
+        public static final int ui_unit_distance=0x7f05000b;
+        public static final int ui_unit_pace=0x7f05000e;
+        public static final int ui_unit_speed=0x7f05000d;
+        public static final int ui_unit_time=0x7f05000c;
     }
     public static final class style {
         /** 

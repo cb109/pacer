@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="5dp"
-                android:text="Hours"
+                android:text="@string/ui_txt_hours"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Minutes"
+                android:text="@string/ui_txt_minutes"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Seconds"
+                android:text="@string/ui_txt_seconds"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
         </TableRow>
 
@@ -62,7 +62,7 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow3"
+            android:id="@+id/tableRow33"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
@@ -76,13 +76,13 @@
                 android:id="@+id/buttonOk"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Ok" />
+                android:text="@string/ui_btn_ok" />
 
             <Button
                 android:id="@+id/buttonCancel"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Cancel" />
+                android:text="@string/ui_btn_cancel" />
 
         </TableRow>
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Pacer</string>
+    <string name="action_settings">Einstellungen</string>
+    
+    <string name="ui_header_settings">Einstellungen</string>
+    <string name="ui_header_values">Werte</string>
+    <string name="ui_header_predictions">Zeitschätzungen</string>
+    
+    <string name="ui_expl_affects">Pace/Geschwindigkeit beeinflusst:</string>
+    <string name="ui_expl_lock">Pace/Geschwindigkeit fixieren</string>
+    
+    <string name="ui_txt_distance">Distanz</string>
+    <string name="ui_txt_time">Zeit</string>
+    <string name="ui_txt_speed">Geschwindigkeit</string>
+    <string name="ui_txt_pace">Pace</string>
+    
+    <string name="ui_unit_distance">km</string>
+    <string name="ui_unit_time">h min sek</string>
+    <string name="ui_unit_speed">km/h</string>
+    <string name="ui_unit_pace">min/km</string>
+    
+    <string name="ui_btn_reset">Zurücksetzen</string>
+    <string name="ui_btn_ok">OK</string>
+    <string name="ui_btn_cancel">Abbrechen</string>
+    
+    <string name="ui_pred_5k">5 km</string>
+    <string name="ui_pred_10k">10 km</string>
+    <string name="ui_pred_hm">Halbmarathon</string>
+    <string name="ui_pred_m">Marathon</string>
+    
+    <string name="ui_txt_hours">Stunden</string>
+    <string name="ui_txt_minutes">Minuten</string>
+    <string name="ui_txt_seconds">Sekunden</string>
+    
+    <string name="ui_title_default">Setze Wert</string>
+    <string name="ui_title_distance">Setze Distanz</string>
+    <string name="ui_title_time">Setze Zeit</string>
+    <string name="ui_title_pace">Setze Pace</string>
+    <string name="ui_title_speed">Setze Geschwindigkeit</string>
+    
+    <string-array name="affections">
+        <item >@string/ui_txt_time</item>
+        <item >@string/ui_txt_distance</item>
+    </string-array>
+
+</resources>

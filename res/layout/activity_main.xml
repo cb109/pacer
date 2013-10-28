@@ -40,7 +40,7 @@
 	                android:layout_height="wrap_content"
 	                android:layout_marginBottom="5dp"
 	                android:layout_weight="1"
-	                android:text="Settings"
+	                android:text="@string/ui_header_settings"
 	                android:textAppearance="?android:attr/textAppearanceMedium" />
 	        </TableRow>
 	        
@@ -53,16 +53,14 @@
 	                android:id="@+id/textViewAffects"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_marginRight="10dp"
-	                android:layout_weight="1"
-	                android:text="Changing pace or speed affects:"
+	                android:layout_marginRight="5dp"
+	                android:text="@string/ui_expl_affects"
 	                android:textAppearance="?android:attr/textAppearanceSmall" />
 	
 	            <Spinner
 	                android:id="@+id/spinnerAffects"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_weight="3"
 	                android:entries="@array/affections" />
 	        </TableRow>
 
@@ -76,7 +74,7 @@
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:layout_weight="1"
-	                android:text="Lock pace and speed" />
+	                android:text="@string/ui_expl_lock" />
 
 	        </TableRow>
 	        
@@ -101,7 +99,7 @@
 				    android:layout_height="wrap_content"
 				    android:layout_marginBottom="5dp"
 				    android:layout_weight="1"
-				    android:text="Values"
+				    android:text="@string/ui_header_values"
 				    android:textAppearance="?android:attr/textAppearanceMedium" />
 	            
 	        </TableRow>
@@ -115,7 +113,7 @@
 	                android:id="@+id/textViewNameDistance"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="Distance"
+	                android:text="@string/ui_txt_distance"
 	                android:textAppearance="?android:attr/textAppearanceSmall" />
 	
 	            <EditText
@@ -131,7 +129,7 @@
 	                android:id="@+id/textViewUnitDistance"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="km"
+	                android:text="@string/ui_unit_distance"
 	                android:textAppearance="?android:attr/textAppearanceSmall" />
 	        </TableRow>
 	
@@ -144,7 +142,7 @@
 	                android:id="@+id/textViewNameTime"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="Time"
+	                android:text="@string/ui_txt_time"
 	                android:textAppearance="?android:attr/textAppearanceSmall" />
 	
 	            <EditText
@@ -159,7 +157,7 @@
 	                android:id="@+id/textViewUnitTime"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="hrs min sec"
+	                android:text="@string/ui_unit_time"
 	                android:textAppearance="?android:attr/textAppearanceSmall" />
 	        </TableRow>
 	
@@ -172,7 +170,7 @@
 	                android:id="@+id/textViewNamePace"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="Pace"
+	                android:text="@string/ui_txt_pace"
 	                android:textAppearance="?android:attr/textAppearanceSmall" />
 	
 	            <EditText
@@ -187,12 +185,12 @@
 	                android:id="@+id/textViewUnitPace"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="min/km"
+	                android:text="@string/ui_unit_pace"
 	                android:textAppearance="?android:attr/textAppearanceSmall" />
 	        </TableRow>
 	
 	        <TableRow
-	            android:id="@+id/tableRow3"
+	            android:id="@+id/tableRow33"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content" >
 	
@@ -200,7 +198,7 @@
 	                android:id="@+id/textViewNameSpeed"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="Speed"
+	                android:text="@string/ui_txt_speed"
 	                android:textAppearance="?android:attr/textAppearanceSmall" />
 	
 	            <EditText
@@ -215,12 +213,12 @@
 	                android:id="@+id/textViewUnitSpeed"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="km/h"
+	                android:text="@string/ui_unit_speed"
 	                android:textAppearance="?android:attr/textAppearanceSmall" />
 	        </TableRow>
 	        
 	        <TableRow
-	            android:id="@+id/tableRow3"
+	            android:id="@+id/tableRow32"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content" >
 	
@@ -228,11 +226,9 @@
 			    android:id="@+id/buttonReset"
 			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
-			    android:layout_below="@id/tableLayout1"
-			    android:layout_centerHorizontal="true"
 			    android:layout_marginTop="10dp"
 			    android:layout_weight="1"
-			    android:text="Reset" />
+			    android:text="@string/ui_btn_reset" />
 
 	        </TableRow>
 	        
@@ -258,7 +254,7 @@
 	                android:layout_marginBottom="5dp"
 	                android:layout_marginRight="50dp"
 	                android:layout_weight="1"
-	                android:text="Predictions"
+	                android:text="@string/ui_header_predictions"
 	                android:textAppearance="?android:attr/textAppearanceMedium" />
 
 	        </TableRow>
@@ -274,7 +270,7 @@
 				    android:layout_height="wrap_content"
 				    android:layout_marginBottom="5dp"
 				    android:layout_weight="1"
-				    android:text="5 km"
+				    android:text="@string/ui_pred_5k"
 				    android:textAppearance="?android:attr/textAppearanceSmall" />
 				
 				<TextView
@@ -292,13 +288,13 @@
 	            android:layout_height="wrap_content" >
 	            
 				<TextView
-	                android:id="@+id/textViewHeader10k"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:layout_marginBottom="5dp"
-	                android:layout_weight="1"
-	                android:text="10 km"
-	                android:textAppearance="?android:attr/textAppearanceSmall" />
+				    android:id="@+id/textViewHeader10k"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_marginBottom="5dp"
+				    android:layout_weight="1"
+				    android:text="@string/ui_pred_10k"
+				    android:textAppearance="?android:attr/textAppearanceSmall" />
 				
 				<TextView
 	                android:id="@+id/textViewValue10k"
@@ -315,13 +311,13 @@
 	            android:layout_height="wrap_content" >
 	            
 				<TextView
-	                android:id="@+id/textViewHeaderHm"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:layout_marginBottom="5dp"
-	                android:layout_weight="1"
-	                android:text="Half marathon"
-	                android:textAppearance="?android:attr/textAppearanceSmall" />
+				    android:id="@+id/textViewHeaderHm"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_marginBottom="5dp"
+				    android:layout_weight="1"
+				    android:text="@string/ui_pred_hm"
+				    android:textAppearance="?android:attr/textAppearanceSmall" />
 				
 				<TextView
 	                android:id="@+id/textViewValueHm"
@@ -338,13 +334,13 @@
 	            android:layout_height="wrap_content" >
 	            
 				<TextView
-	                android:id="@+id/textViewHeaderM"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:layout_marginBottom="5dp"
-	                android:layout_weight="1"
-	                android:text="Marathon"
-	                android:textAppearance="?android:attr/textAppearanceSmall" />
+				    android:id="@+id/textViewHeaderM"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_marginBottom="5dp"
+				    android:layout_weight="1"
+				    android:text="@string/ui_pred_m"
+				    android:textAppearance="?android:attr/textAppearanceSmall" />
 				
 				<TextView
 	                android:id="@+id/textViewValueM"
