@@ -33,6 +33,8 @@ public class MainActivity extends Activity implements
 	private double pace = 6.00; // internal unit: min/km (but displayed in
 								// mins:secs)
 
+    private double kilometerToMileRatio = 0.621371;  // Multiply with a km value to get mi.
+
 	private DecimalFormat df = new DecimalFormat("##.##"); // for distance,
 															// speed, pace
 
@@ -162,26 +164,48 @@ public class MainActivity extends Activity implements
 		storeToSharedPreferences();
 	}
 
-    private void updateDisplayedUnits() {
+    private int getCurrentUnitsIndex() {
         Spinner spinnerUnits = (Spinner) findViewById(R.id.spinnerCurrentUnitSystem);
-        int currentUnitsIndex = spinnerUnits.getSelectedItemPosition();
-        boolean isMetric = currentUnitsIndex == 0;
-        boolean isImperial = currentUnitsIndex == 1;
+        return spinnerUnits.getSelectedItemPosition();
+    }
 
+    private boolean isMetric() {
+        return getCurrentUnitsIndex() == 0;
+    }
+
+    private boolean isImperial() {
+        return getCurrentUnitsIndex() == 1;
+    }
+
+    private double fromDisplayUnits(double value) {
+        if (isImperial()) {
+            return value / kilometerToMileRatio;
+        }
+        return value;
+    }
+
+    private double toDisplayUnits(double value) {
+        if (isImperial()) {
+            return value * kilometerToMileRatio;
+        }
+        return value;
+    }
+
+    private void updateDisplayedUnits() {
         final TextView textViewUnitDistance = (TextView) findViewById(R.id.textViewUnitDistance);
         final TextView textViewUnitPace = (TextView) findViewById(R.id.textViewUnitPace);
         final TextView textViewUnitSpeed = (TextView) findViewById(R.id.textViewUnitSpeed);
         final TextView textViewHeader5k = (TextView) findViewById(R.id.textViewHeader5k);
         final TextView textViewHeader10k = (TextView) findViewById(R.id.textViewHeader10k);
 
-        if (isMetric) {
+        if (isMetric()) {
             textViewUnitSpeed.setText(R.string.ui_unit_metric_speed);
             textViewUnitPace.setText(R.string.ui_unit_metric_pace);
             textViewUnitDistance.setText(R.string.ui_unit_metric_distance);
             textViewHeader5k.setText(R.string.ui_pred_metric_5k);
             textViewHeader10k.setText(R.string.ui_pred_metric_10k);
         }
-        if (isImperial) {
+        if (isImperial()) {
             textViewUnitSpeed.setText(R.string.ui_unit_imperial_speed);
             textViewUnitPace.setText(R.string.ui_unit_imperial_pace);
             textViewUnitDistance.setText(R.string.ui_unit_imperial_distance);
@@ -499,6 +523,7 @@ public class MainActivity extends Activity implements
 		final EditText editTextSpeed = (EditText) findViewById(R.id.editTextSpeed);
 		final EditText editTextPace = (EditText) findViewById(R.id.editTextPace);
 		final EditText editTextTime = (EditText) findViewById(R.id.editTextTime);
+
 		editTextDistance.setText(df.format((distance)));
 		editTextSpeed.setText(df.format(speed));
 		editTextPace.setText(ms_to_string(minutes_to_ms(pace)));
@@ -509,6 +534,7 @@ public class MainActivity extends Activity implements
 		final TextView textViewValue10k = (TextView) findViewById(R.id.textViewValue10k);
 		final TextView textViewValueHm = (TextView) findViewById(R.id.textViewValueHm);
 		final TextView textViewValueM = (TextView) findViewById(R.id.textViewValueM);
+
 		textViewValue5k.setText(predictTime(distance, time, 5.0));
 		textViewValue10k.setText(predictTime(distance, time, 10.0));
 		textViewValueHm.setText(predictTime(distance, time, 21.0975));
@@ -521,28 +547,23 @@ public class MainActivity extends Activity implements
 	}
 
 	private double calcPace() {
-		double pace = time / distance;
-		return pace;
+		return time / distance;
 	}
 
 	private double calcPaceUsingSpeed() {
-		double pace = 60.0 / speed;
-		return pace;
+		return 60.0 / speed;
 	}
 
 	private double calcSpeed() {
-		double speed = distance / (time / 60.0);
-		return speed;
+		return distance / (time / 60.0);
 	}
 
 	private double calcTime() {
-		double time = distance * pace;
-		return time;
+		return distance * pace;
 	}
 
 	private double calcDistance() {
-		double distance = time / pace;
-		return distance;
+		return time / pace;
 	}
 
 	/**
@@ -559,7 +580,6 @@ public class MainActivity extends Activity implements
 	private String predictTime(double s1, double t1, double s2) {
 		double t2 = t1 * Math.pow((s2 / s1), 1.07);
 		int[] hms = minutes_to_hms(t2);
-		String result = hms_to_string(hms);
-		return result;
+		return hms_to_string(hms);
 	}
 }
