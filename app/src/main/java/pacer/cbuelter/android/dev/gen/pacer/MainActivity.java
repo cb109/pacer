@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.SharedPreferences;
+import android.provider.Settings;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -82,6 +83,7 @@ public class MainActivity extends Activity implements
 		df.setMinimumIntegerDigits(2);
 		df.setMinimumFractionDigits(2);
 		update_gui_from_fields();
+        updateDisplayedUnits();
 
 		// These get a dialog with 2 numberpickers
 		editTextDistance.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -137,6 +139,7 @@ public class MainActivity extends Activity implements
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View v, int pos, long id) {
 				storeToSharedPreferences();
+                updateDisplayedUnits();
 			}
 
 			@Override
@@ -158,6 +161,34 @@ public class MainActivity extends Activity implements
 		update_gui_from_fields();
 		storeToSharedPreferences();
 	}
+
+    private void updateDisplayedUnits() {
+        Spinner spinnerUnits = (Spinner) findViewById(R.id.spinnerCurrentUnitSystem);
+        int currentUnitsIndex = spinnerUnits.getSelectedItemPosition();
+        boolean isMetric = currentUnitsIndex == 0;
+        boolean isImperial = currentUnitsIndex == 1;
+
+        final TextView textViewUnitDistance = (TextView) findViewById(R.id.textViewUnitDistance);
+        final TextView textViewUnitPace = (TextView) findViewById(R.id.textViewUnitPace);
+        final TextView textViewUnitSpeed = (TextView) findViewById(R.id.textViewUnitSpeed);
+        final TextView textViewHeader5k = (TextView) findViewById(R.id.textViewHeader5k);
+        final TextView textViewHeader10k = (TextView) findViewById(R.id.textViewHeader10k);
+
+        if (isMetric) {
+            textViewUnitSpeed.setText(R.string.ui_unit_metric_speed);
+            textViewUnitPace.setText(R.string.ui_unit_metric_pace);
+            textViewUnitDistance.setText(R.string.ui_unit_metric_distance);
+            textViewHeader5k.setText(R.string.ui_pred_metric_5k);
+            textViewHeader10k.setText(R.string.ui_pred_metric_10k);
+        }
+        if (isImperial) {
+            textViewUnitSpeed.setText(R.string.ui_unit_imperial_speed);
+            textViewUnitPace.setText(R.string.ui_unit_imperial_pace);
+            textViewUnitDistance.setText(R.string.ui_unit_imperial_distance);
+            textViewHeader5k.setText(R.string.ui_pred_imperial_5k);
+            textViewHeader10k.setText(R.string.ui_pred_imperial_10k);
+        }
+    }
 
 	private void storeToSharedPreferences() {
 		SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();

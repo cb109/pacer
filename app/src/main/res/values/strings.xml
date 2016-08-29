@@ -10,32 +10,41 @@
 
     <string name="ui_expl_affects">Changing pace or speed affects:</string>
     <string name="ui_expl_lock">Lock pace and speed</string>
-    <string name="ui_expl_currentunitsystem">Display values using:</string>
+    <string name="ui_expl_unit_current_system">Display values using:</string>
 
     <string name="ui_txt_distance">Distance</string>
     <string name="ui_txt_time">Time</string>
     <string name="ui_txt_speed">Speed</string>
     <string name="ui_txt_pace">Pace</string>
 
-    <string name="ui_unit_distance">km</string>
     <string name="ui_unit_time">hrs min sec</string>
-    <string name="ui_unit_speed">km/h</string>
-    <string name="ui_unit_pace">min/km</string>
+
+    <string name="ui_unit_metric_distance">km</string>
+    <string name="ui_unit_metric_speed">km/h</string>
+    <string name="ui_unit_metric_pace">min/km</string>
+
+    <string name="ui_unit_imperial_distance">mi</string>
+    <string name="ui_unit_imperial_speed">mi/h</string>
+    <string name="ui_unit_imperial_pace">min/mi</string>
 
     <string name="ui_btn_reset">Reset</string>
     <string name="ui_btn_ok">OK</string>
     <string name="ui_btn_cancel">Cancel</string>
 
-    <string name="ui_pred_5k">5 km</string>
-    <string name="ui_pred_10k">10 km</string>
+    <string name="ui_pred_metric_5k">5 km</string>
+    <string name="ui_pred_metric_10k">10 km</string>
+
+    <string name="ui_pred_imperial_5k">3.1 mi (5 km)</string>
+    <string name="ui_pred_imperial_10k">6.2 mi (10 km)</string>
+
     <string name="ui_pred_hm">Half marathon</string>
     <string name="ui_pred_m">Marathon</string>
 
     <string name="ui_txt_hours">Hours</string>
     <string name="ui_txt_minutes">Minutes</string>
     <string name="ui_txt_seconds">Seconds</string>
-    <string name="ui_txt_metric">Kilometers</string>
-    <string name="ui_txt_imperial">Miles</string>
+    <string name="ui_txt_unit_metric">Kilometers</string>
+    <string name="ui_txt_unit_imperial">Miles</string>
 
     <string name="ui_title_default">Set Value</string>
     <string name="ui_title_distance">Set Distance</string>
@@ -49,8 +58,8 @@
     </string-array>
 
     <string-array name="unitsystems">
-        <item >@string/ui_txt_metric</item>
-        <item >@string/ui_txt_imperial</item>
+        <item >@string/ui_txt_unit_metric</item>
+        <item >@string/ui_txt_unit_imperial</item>
     </string-array>
 
 </resources>
