@@ -123,8 +123,19 @@ public class MainActivity extends Activity implements
 		final Spinner spinnerAffects = (Spinner) findViewById(R.id.spinnerAffects);
 		spinnerAffects.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
-			public void onItemSelected(AdapterView<?> parent, View v, int pos,
-					long id) {
+			public void onItemSelected(AdapterView<?> parent, View v, int pos, long id) {
+				storeToSharedPreferences();
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
+
+        final Spinner spinnerUnits = (Spinner) findViewById(R.id.spinnerCurrentUnitSystem);
+        spinnerUnits.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View v, int pos, long id) {
 				storeToSharedPreferences();
 			}
 
@@ -156,8 +167,10 @@ public class MainActivity extends Activity implements
 		editor.putFloat("pace", (float) pace);
 
 		Spinner spinnerAffects = (Spinner) findViewById(R.id.spinnerAffects);
-		editor.putInt("spinnerAffectsIndex",
-				spinnerAffects.getSelectedItemPosition());
+		editor.putInt("spinnerAffectsIndex", spinnerAffects.getSelectedItemPosition());
+
+		Spinner spinnerUnits = (Spinner) findViewById(R.id.spinnerCurrentUnitSystem);
+		editor.putInt("spinnerUnitsIndex", spinnerUnits.getSelectedItemPosition());
 
 		CheckBox checkBoxLock = (CheckBox) findViewById(R.id.checkBoxLock);
 		editor.putBoolean("checkBoxLockChecked", checkBoxLock.isChecked());
@@ -168,7 +181,7 @@ public class MainActivity extends Activity implements
 		EditText editTextPace = (EditText) findViewById(R.id.editTextPace);
 		editor.putBoolean("editTextPaceEnabled", editTextPace.isEnabled());
 
-		editor.commit();
+		editor.apply();
 	}
 
 	private void loadFromSharedPreferences() {
@@ -181,12 +194,14 @@ public class MainActivity extends Activity implements
 		Spinner spinnerAffects = (Spinner) findViewById(R.id.spinnerAffects);
 		spinnerAffects.setSelection(prefs.getInt("spinnerAffectsIndex", 0));
 
+		Spinner spinnerUnits = (Spinner) findViewById(R.id.spinnerCurrentUnitSystem);
+        spinnerUnits.setSelection(prefs.getInt("spinnerUnitsIndex", 0));
+
 		CheckBox checkBoxLock = (CheckBox) findViewById(R.id.checkBoxLock);
 		checkBoxLock.setChecked(prefs.getBoolean("checkBoxLockChecked", false));
 
 		EditText editTextSpeed = (EditText) findViewById(R.id.editTextSpeed);
-		editTextSpeed
-				.setEnabled(prefs.getBoolean("editTextSpeedEnabled", true));
+		editTextSpeed.setEnabled(prefs.getBoolean("editTextSpeedEnabled", true));
 
 		EditText editTextPace = (EditText) findViewById(R.id.editTextPace);
 		editTextPace.setEnabled(prefs.getBoolean("editTextPaceEnabled", true));
