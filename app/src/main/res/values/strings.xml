@@ -10,6 +10,7 @@
 
     <string name="ui_expl_affects">Changing pace or speed affects:</string>
     <string name="ui_expl_lock">Lock pace and speed</string>
+    <string name="ui_expl_currentunitsystem">Display values using:</string>
 
     <string name="ui_txt_distance">Distance</string>
     <string name="ui_txt_time">Time</string>
@@ -33,6 +34,8 @@
     <string name="ui_txt_hours">Hours</string>
     <string name="ui_txt_minutes">Minutes</string>
     <string name="ui_txt_seconds">Seconds</string>
+    <string name="ui_txt_metric">Kilometers</string>
+    <string name="ui_txt_imperial">Miles</string>
 
     <string name="ui_title_default">Set Value</string>
     <string name="ui_title_distance">Set Distance</string>
@@ -43,6 +46,11 @@
     <string-array name="affections">
         <item >@string/ui_txt_time</item>
         <item >@string/ui_txt_distance</item>
+    </string-array>
+
+    <string-array name="unitsystems">
+        <item >@string/ui_txt_metric</item>
+        <item >@string/ui_txt_imperial</item>
     </string-array>
 
 </resources>
